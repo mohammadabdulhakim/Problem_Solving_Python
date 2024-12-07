@@ -1,19 +1,16 @@
 if __name__ == '__main__':
-    students = [] 
-    scores = []
-    for _ in range(int(input())):
-        name = input()
-        score = float(input())
-        students.append([name,score])
-        scores.append(score)
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float, line))
+        student_marks[name] = scores
         
-        
-    scores = list(set(scores))
-    scores.sort()
-    students.sort()
-    del scores[0]
+    query_scores = student_marks[input()]
     
+    average = sum(query_scores) / len(query_scores)
     
-    for student in students:
-        if student[1] == scores[0]:
-            print(student[0])
+    str_average_100 = str(int(average * 100))
+    output = str_average_100[0:len(str_average_100)-2] + "." + str_average_100[len(str_average_100)-2:]
+    
+    print(output)
